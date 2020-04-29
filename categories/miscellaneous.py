@@ -97,11 +97,11 @@ class Miscellaneous(commands.Cog):
     async def testing(self, ctx):
         await ctx.author.send(
             f'{ctx.author.mention} **Here is the link for the EarthChan Testing server!** https://discord.gg/dAm265y')
-    
+
     @commands.command()
-    async def invite(self, ctx, *, guild : discord.Guild):
-      instinv = await self.client.create_invite(self.client.get_channel())
-      await ctx.send('Here is your invite: ' + instinv)
+    async def invite(self, ctx):
+      instinv = await ctx.channel.create_invite(max_age=300)
+      await ctx.send("Here is your invite link: " + str(instinv))
 
 def setup(client):
     client.add_cog(Miscellaneous(client))
