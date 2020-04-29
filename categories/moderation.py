@@ -41,5 +41,31 @@ class Moderation(commands.Cog):
         await member.edit(nick=nick)
         await ctx.send(f':white_check_mark: **Ok, {member} now has the nickname {nick}!** :pencil2:')
 
+    @commands.command()
+    async def mute(self, ctx, member : discord.Member):
+        role = discord.utils.get(ctx.guild.roles, name='Muted')
+        if not role:
+          try:
+            muted = await ctx.guild.create_role(name='Muted', reason=None)
+            for channel in ctx.guild.channels:
+              await channel.set_permissions(muted, send_messages=False, speak=False)
+            await member.add_roles(muted)
+            await ctx.send(f'{member} has been muted.')
+          except discord.Forbidden:
+            await ctx.send('An Exception has occurred. I do not have the permissions to mute {member}')
+        else:
+          await member.add_roles(role)
+          await ctx.send(f"{member} has been muted")
+
+    @commands.command()
+    async def unmute(self, ctx, member : discord.Member):
+        role = discord.utils.get(ctx.guild.roles, name='Muted')
+        if role in member.roles:
+          await member.remove_roles(role)
+          await ctx.send(f'{member} has been unmuted.')
+        else:
+          await ctx.send(f'{member} is not even muted!')
+        
+
 def setup(client):
     client.add_cog(Moderation(client))
