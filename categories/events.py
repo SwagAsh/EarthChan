@@ -7,7 +7,7 @@ class Events(commands.Cog):
     
     @commands.Cog.listener()
     async def on_ready(self):
-        await self.client.change_presence(status=discord.Status.online, activity=discord.Game(name='I have an illegal child??!?!'))
+        await self.client.change_presence(status=discord.Status.online, activity=discord.Game(name='😳 unicode flush emoji makes no sense'))
         print('Hello Senpai, i am wide awake!')
 
     @commands.Cog.listener()
