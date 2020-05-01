@@ -12,5 +12,11 @@ class StatsAndData(commands.Cog):
         )
         await ctx.send(embed=steat)
 
+    @commands.command(aliases = ['mcount'])
+    async def membercount(self, ctx):
+        mList = [x for x in ctx.guild.members]
+        await ctx.send('This server has **' + str(len(mList)) + '** members')
+
+
 def setup(client):
     client.add_cog(StatsAndData(client))
