@@ -95,8 +95,7 @@ class Miscellaneous(commands.Cog):
 
     @commands.command(aliases = ['testingserver', 'testserver'])
     async def testing(self, ctx):
-        await ctx.author.send(
-            f'{ctx.author.mention} **Here is the link for the EarthChan Testing server!** https://discord.gg/dAm265y')
+        await ctx.author.send(f'{ctx.author.mention} **Here is the link for the EarthChan Testing server!** https://discord.gg/dAm265y')
 
     @commands.command()
     async def invite(self, ctx):
