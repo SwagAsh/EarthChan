@@ -17,6 +17,16 @@ class StatsAndData(commands.Cog):
         mList = [x for x in ctx.guild.members]
         await ctx.send('This server has **' + str(len(mList)) + '** members')
 
+    @commands.command(aliases = ['mlist'])
+    async def memberlist(self, ctx):
+        mList = [x for x in ctx.guild.members]
+        mbed = discord.Embed(
+            title=f'{ctx.guild} Members list:',
+            description='There are **' + str(len(mList)) + '** members in this server.'
+        )
+        for x in mList:
+                mbed.add_field(name="Member:", value=x)
+        await ctx.send(embed=mbed)
 
 def setup(client):
     client.add_cog(StatsAndData(client))
